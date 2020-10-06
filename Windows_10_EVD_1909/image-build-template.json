@@ -121,7 +121,8 @@
                 "distribute": [
                     {
                         "type":"managedImage",
-                        "ImageId": "[resourceId('Microsoft.Compute/galleries/images', parameters('imageGalleryName'), parameters('imageName'))]",
+                        "ImageId": "/subscriptions/<subscriptionId>/resourceGroups/<destinationResourceGroupName>/providers/Microsoft.Compute/images/<imageName>",
+						"location": "[parameters('replicaLocation')]",
                         "runOutputName": "[concat(parameters('imageTemplateName'), 'Output')]",
                         "artifactTags": { }
                     }
