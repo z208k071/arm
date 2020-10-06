@@ -15,9 +15,6 @@
         "aibManagedId": {
             "type": "string"
         },
-        "imageGalleryName": {
-            "type": "string"
-        },
         "imageName": {
             "type": "string"
         },
@@ -27,6 +24,7 @@
         }
     },
     "variables": {
+		"ManagedImageId": "[concat('/subscriptions/',<subscriptionId>,'/resourceGroups/',<destinationResourceGroupName>,'/providers/Microsoft.Compute/images/',<imageName>)]"
     },
     "resources": [
         {
@@ -121,8 +119,8 @@
                 "distribute": [
                     {
                         "type": "ManagedImage",
-                        "ImageId": "/subscriptions/<subscriptionId>/resourceGroups/<destinationResourceGroupName>/providers/Microsoft.Compute/images/<imageName>",
-						"location": "[parameters('replicaLocation')]",
+                        "imageId": "[variables('ManagedImageId')]",
+                        "location": "[parameters('replicaLocation')]",
                         "runOutputName": "[concat(parameters('imageTemplateName'), 'Output')]",
                         "artifactTags": { }
                     }
