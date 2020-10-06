@@ -120,7 +120,7 @@
                 ],
                 "distribute": [
                     {
-                        "type":"managedImage",
+                        "type": "ManagedImage",
                         "ImageId": "/subscriptions/<subscriptionId>/resourceGroups/<destinationResourceGroupName>/providers/Microsoft.Compute/images/<imageName>",
 						"location": "[parameters('replicaLocation')]",
                         "runOutputName": "[concat(parameters('imageTemplateName'), 'Output')]",
