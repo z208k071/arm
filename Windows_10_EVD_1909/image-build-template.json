@@ -24,7 +24,7 @@
         }
     },
     "variables": {
-		"ManagedImageId": "[concat('/subscriptions/',<subscriptionId>,'/resourceGroups/',<destinationResourceGroupName>,'/providers/Microsoft.Compute/images/',<imageName>)]"
+		"ManagedImageId": "[concat('/subscriptions/','<subscriptionId>','/resourceGroups/','<destinationResourceGroupName>','/providers/Microsoft.Compute/images/','<imageName>')]"
     },
     "resources": [
         {
