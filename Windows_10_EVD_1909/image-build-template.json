@@ -57,6 +57,12 @@
                 "customize": [
                     {
                         "type": "PowerShell",
+                        "name": "01_network_policy",
+                        "runElevated": false,
+                        "scriptUri": "https://raw.githubusercontent.com/z208k071/arm/main/Windows_10_EVD_1909/scripts/01_network_policy.ps1"
+                    },
+					{
+                        "type": "PowerShell",
                         "name": "02_install_language_pack",
                         "runElevated": false,
                         "scriptUri": "https://raw.githubusercontent.com/z208k071/arm/main/Windows_10_EVD_1909/scripts/02_install_language_pack.ps1"
