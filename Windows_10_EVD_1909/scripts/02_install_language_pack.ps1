@@ -40,11 +40,4 @@ Add-WindowsPackage -Online -PackagePath $fodDriveLetter\Microsoft-Windows-Langua
 Add-WindowsPackage -Online -PackagePath $fodDriveLetter\Microsoft-Windows-LanguageFeatures-OCR-ja-jp-Package~31bf3856ad364e35~amd64~~.cab
 Add-WindowsPackage -Online -PackagePath $fodDriveLetter\Microsoft-Windows-LanguageFeatures-Speech-ja-jp-Package~31bf3856ad364e35~amd64~~.cab
 Add-WindowsPackage -Online -PackagePath $fodDriveLetter\Microsoft-Windows-LanguageFeatures-TextToSpeech-ja-jp-Package~31bf3856ad364e35~amd64~~.cab
-Add-WindowsPackage -Online -PackagePath $fodDriveLetter\Microsoft-Windows-NetFx3-OnDemand-Package~31bf3856ad364e35~amd64~ja-jp~.cab
-Add-WindowsPackage -Online -PackagePath $fodDriveLetter\Microsoft-Windows-InternetExplorer-Optional-Package~31bf3856ad364e35~amd64~ja-jp~.cab
-Add-WindowsPackage -Online -PackagePath $fodDriveLetter\Microsoft-Windows-MSPaint-FoD-Package~31bf3856ad364e35~amd64~ja-jp~.cab
-Add-WindowsPackage -Online -PackagePath $fodDriveLetter\Microsoft-Windows-Notepad-FoD-Package~31bf3856ad364e35~amd64~ja-jp~.cab
-Add-WindowsPackage -Online -PackagePath $fodDriveLetter\Microsoft-Windows-PowerShell-ISE-FOD-Package~31bf3856ad364e35~amd64~ja-jp~.cab
-Add-WindowsPackage -Online -PackagePath $fodDriveLetter\Microsoft-Windows-Printing-WFS-FoD-Package~31bf3856ad364e35~amd64~ja-jp~.cab
-Add-WindowsPackage -Online -PackagePath $fodDriveLetter\Microsoft-Windows-StepsRecorder-Package~31bf3856ad364e35~amd64~ja-jp~.cab
-Add-WindowsPackage -Online -PackagePath $fodDriveLetter\Microsoft-Windows-WordPad-FoD-Package~31bf3856ad364e35~amd64~ja-jp~.cab
+
