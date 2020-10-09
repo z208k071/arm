@@ -1,0 +1,133 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "imageTemplateName": {
+            "type": "string"
+        },
+        "api-version": {
+            "type": "string"
+        },
+        "aibLocation": {
+            "type": "string",
+            "defaultValue": "westus"
+        },
+        "aibManagedId": {
+            "type": "string"
+        },
+        "imageName": {
+            "type": "string"
+        }
+    },
+    "variables": { },
+    "resources": [
+        {
+            "name": "[parameters('imageTemplateName')]",
+            "type": "Microsoft.VirtualMachineImages/imageTemplates",
+            "apiVersion": "[parameters('api-version')]",
+            "location": "[parameters('aibLocation')]",
+            "dependsOn": [
+            ],
+            "identity": {
+                "type": "UserAssigned",
+                "userAssignedIdentities": {
+                    "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('aibManagedId'))]": {
+                    }
+                }
+            },
+            "properties": {
+                "buildTimeoutInMinutes": 100,
+                "vmProfile": {
+                    "vmSize": "Standard_D2_v3",
+                    "osDiskSizeGB": 127
+                },
+                "source": {
+                    "type": "PlatformImage",
+                    "publisher": "MicrosoftWindowsDesktop",
+                    "offer": "Windows-10",
+                    "sku": "19h2-evd",
+                    "version": "latest"
+                },
+                "customize": [
+                    {
+                        "type": "PowerShell",
+                        "name": "01_network_policy",
+                        "runElevated": false,
+                        "scriptUri": "https://raw.githubusercontent.com/z208k071/arm/main/Windows_10_EVD_1909/scripts/01_network_policy.ps1"
+                    },
+					{
+                        "type": "PowerShell",
+                        "name": "02_install_language_pack",
+                        "runElevated": false,
+                        "scriptUri": "https://raw.githubusercontent.com/z208k071/arm/main/Windows_10_EVD_1909/scripts/02_install_language_pack.ps1"
+                    },
+                    {
+                        "type": "PowerShell",
+                        "name": "03_config_display_language",
+                        "runElevated": false,
+                        "scriptUri": "https://raw.githubusercontent.com/z208k071/arm/main/Windows_10_EVD_1909/scripts/03_config_display_language.ps1"
+                    },
+                    {
+                        "type": "WindowsRestart",
+                        "restartTimeout": "20m"
+                    },
+					{
+                        "type": "WindowsUpdate",
+                        "searchCriteria": "IsInstalled=0",
+                        "filters": [
+                            "exclude:$_.Title -like '*Preview*'",
+                            "include:$true"
+                        ],
+                        "updateLimit": 20
+                    },
+                    {
+                        "type": "WindowsRestart",
+                        "restartTimeout": "20m"
+                    },
+                    {
+                        "type": "File",
+                        "name": "ja-JP-welcome",
+                        "sourceUri": "https://raw.githubusercontent.com/z208k071/arm/main/Windows_10_EVD_1909/registers/ja-JP-welcome.reg",
+                        "destination": "C:\\Temp\\ja-JP-welcome.reg"
+                    },
+                    {
+                        "type": "File",
+                        "name": "ja-JP-default",
+                        "sourceUri": "https://raw.githubusercontent.com/z208k071/arm/main/Windows_10_EVD_1909/registers/ja-JP-default.reg",
+                        "destination": "C:\\Temp\\ja-JP-default.reg"
+                    },
+                    {
+                        "type": "PowerShell",
+                        "name": "04_config_system_language",
+                        "runElevated": false,
+                        "scriptUri": "https://raw.githubusercontent.com/z208k071/arm/main/Windows_10_EVD_1909/scripts/04_config_system_language.ps1"
+                    },
+                    {
+                        "type": "WindowsRestart",
+                        "restartTimeout": "20m"
+                    },
+                    {
+                        "type": "WindowsUpdate",
+                        "searchCriteria": "IsInstalled=0",
+                        "filters": [
+                            "exclude:$_.Title -like '*Preview*'",
+                            "include:$true"
+                        ],
+                        "updateLimit": 20
+                    },
+                    {
+                        "type": "WindowsRestart",
+                        "restartTimeout": "5m"
+                    }
+                ],
+                "distribute": [
+                    {
+                        "type": "VHD",
+                        "runOutputName": "[concat(parameters('imageTemplateName'), 'Output')]",
+                        "artifactTags": { }
+                    }
+                ]
+            }
+        }
+    ]
+}
