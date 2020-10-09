@@ -20,7 +20,7 @@
         },
         "replicaLocation": {
             "type": "string",
-            "defaultValue": "westus"
+            "defaultValue": "japaneast"
         }
     },
     "variables": {
@@ -124,9 +124,7 @@
                 ],
                 "distribute": [
                     {
-                        "type": "ManagedImage",
-                        "imageId": "[variables('ManagedImageId')]",
-                        "location": "[parameters('replicaLocation')]",
+                        "type": "VHD",
                         "runOutputName": "[concat(parameters('imageTemplateName'), 'Output')]",
                         "artifactTags": { }
                     }
